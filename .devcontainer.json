@@ -8,7 +8,8 @@
         "python.defaultInterpreterPath": "/usr/bin/python3"
     },
     
-    "remoteUser": "vscode",
+    // Rimesso l'utente standard non-root
+    "remoteUser": "vscode", 
     
     "runArgs": [
         // Debugging support
@@ -26,9 +27,9 @@
         "--volume=${env:HOME}/.Xauthority:/home/vscode/.Xauthority:rw",
         "--privileged",
         
-        // Network
-        "--net=host",
-
+        // Network & ROS2 Ports
+        "-p", "4444:4444",              // Mappa la porta di Netcat (se volete fare il test)
+        "-p", "7400-7500:7400-7500/udp", // Porte DDS fondamentali per ROS 2
         "--add-host=host.docker.internal:host-gateway",
         
         // System limits
@@ -37,10 +38,9 @@
         // Video devices
         "--device=/dev/video*:/dev/video*",
         "--device=/dev/dri:/dev/dri",
-        "--group-add=video"
+        "--group-add=video",
+        "--device=/dev/video0"
     ],
-
-    // "forwardPorts": [11002, 1025],    // comment if windows 
 
     "extensions": [
         "ms-vscode.cpptools",
@@ -51,6 +51,5 @@
         "ms-iot.vscode-ros"
     ],
     
-    // "postCreateCommand": "echo 'Gentle Handling container ready! Use vcs to import your repos.'"
     "postCreateCommand": "mkdir -p ws/src && echo 'PCTO container ready! Project workspace: /pcto/ws'"
 }

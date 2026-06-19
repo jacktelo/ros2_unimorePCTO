@@ -24,6 +24,7 @@ class NodoA(Node):
         self.pub.publish(msg)
         self.get_logger().info(f"A → B (periodico): {msg.first_name} {msg.last_name}")
         self.count += 1
+        self.timer.destroy()
 
     def callback(self, msg):
         self.get_logger().info(

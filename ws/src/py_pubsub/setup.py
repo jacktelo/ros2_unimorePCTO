@@ -23,9 +23,11 @@ setup(
         ],
     },
     entry_points={
-    'console_scripts': [
-        'nodo_a = py_pubsub.nodo_a:main',
-        'nodo_b = py_pubsub.nodo_b:main',
-    ],
-},
+        'console_scripts': [
+            'nodo_a_img = py_pubsub.nodo_a_img:main',
+            'nodo_a_finale = py_pubsub.nodo_a_finale:main',
+            'nodo_b_img = py_pubsub.nodo_b_img:main',
+            'nodo_b_finale = py_pubsub.nodo_b_finale:main',
+        ],
+    },
 )
